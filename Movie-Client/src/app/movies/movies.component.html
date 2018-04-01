@@ -1,0 +1,30 @@
+<div class="container"
+     fxLayout="column"
+     fxLayoutGap="10px">
+
+  <div fxFlex>
+    <div>
+      <h3>Movies</h3>
+      <hr>
+    </div>
+  </div>
+
+  <div fxFlex *ngIf="movies" [@expand]>
+    <mat-grid-list cols="5" rowHeight="400px">
+      <mat-grid-tile *ngFor="let movie of movies" [routerLink]="['/moviedetail', movie._id]" appHighlight>
+        <img height="400px" src="{{movie.urlPoster}}" alt={{movie.title}}>
+        <mat-grid-tile-footer>
+          <h1 mat-line>{{movie.title | uppercase}}</h1>
+        </mat-grid-tile-footer>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div [hidden]="movies || errMess">
+    <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+  </div>
+  <div *ngIf="errMess">
+    <h2>Error</h2>
+    <h4>{{errMess}}</h4>
+  </div>
+
+</div>

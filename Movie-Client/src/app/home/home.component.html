@@ -1,0 +1,30 @@
+<div class="container"
+     fxLayout="row"
+     fxLayout.sm="column"
+     fxLayout.xs="column"
+     fxLayoutAlign.gt-md="space-around center"
+     fxLayoutGap="10px">
+
+<div *ngFor="let movie of movies">
+  <mat-card *ngIf="movie" fxFlex [routerLink]="['/moviedetail', movie._id]" [@expand]>
+    <mat-card-header>
+      <div mat-card-avatar></div>
+      <mat-card-title>
+        <h3>{{movie.title | uppercase}}</h3>
+      </mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="{{movie.urlPoster}}" alt={{movie.title}}>
+    <mat-card-content>
+      <p>{{movie.description}}
+      </p>
+    </mat-card-content>
+  </mat-card>
+  <div [hidden]="movie || movieErrMess">
+    <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+  </div>
+  <div *ngIf="movieErrMess">
+    <h2>Error</h2>
+    <h4>{{movieErrMess}}</h4>
+  </div> 
+</div>
+</div>
