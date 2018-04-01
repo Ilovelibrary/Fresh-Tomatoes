@@ -1,11 +1,13 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
-import {MatDialog, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA} from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Movie } from '../shared/movie';
 import { Comment } from '../shared/comment';
 import { MovieService } from '../services/movie.service';
 import { FavoriteService } from '../services/favorite.service';
+
+import { LoginComponent } from '../login/login.component';
 
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
@@ -131,7 +133,11 @@ export class MoviedetailComponent implements OnInit {
   handleFavorites() {
     if (!this.favorite) {
       this.favoriteService.postFavorite(this.movie._id)
-        .subscribe(favorites => { console.log(favorites); this.favorite = true; });
+        .subscribe(favorites => {
+           console.log(favorites); this.favorite = true; 
+          }, errmess => 
+          this.dialog.open(LoginComponent, {width: '500px', height: '450px'})
+        );
     }
     else {
       this.favoriteService.deleteFavorite(this.movie._id)

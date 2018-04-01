@@ -24,6 +24,8 @@
 
   <div style="width:50%;padding:0 40px;" *ngIf="movie" [@visibility]="visibility" [@expand]>
     <mat-list>
+      <h3>Plot</h3>
+      <p>{{movie.description}}</p><br>
       <h3>Comments</h3>
       <mat-list-item *ngFor="let comment of movie.comments">
         <h4 mat-line> {{comment.comment}} </h4>
