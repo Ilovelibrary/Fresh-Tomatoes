@@ -93,7 +93,7 @@ export class MoviedetailComponent implements OnInit {
 
   createForm() {
     this.commentForm = this.fb.group({
-      rating: 5,
+      rating: 10,
       comment: ['', Validators.required]
     });
 
@@ -106,9 +106,10 @@ export class MoviedetailComponent implements OnInit {
   onSubmit() {
     console.log(this.commentForm.value);
     this.movieservice.postComment(this.movie._id, this.commentForm.value)
-      .subscribe(movie => this.movie = movie);
+      .subscribe(movie => this.movie = movie, errmess => 
+          this.dialog.open(LoginComponent, {width: '500px', height: '450px'}));
     this.commentForm.reset({
-      rating: 5,
+      rating: 10,
       comment: ''
     });
     this.commentFormDirective.resetForm();
