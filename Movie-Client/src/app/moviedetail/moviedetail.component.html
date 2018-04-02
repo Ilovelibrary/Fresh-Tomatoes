@@ -1,5 +1,5 @@
 <div class="container">
-  <div style="width:50%;" *ngIf="movie" [@visibility]="visibility" [@expand]>
+  <div style="width:45%;" *ngIf="movie" [@visibility]="visibility" [@expand]>
     <mat-card>
       <mat-card-header>
         <mat-card-title>
@@ -18,7 +18,7 @@
     </mat-card>
   </div>
 
-  <div style="width:50%;padding:0 40px;" *ngIf="movie" [@visibility]="visibility" [@expand]>
+  <div style="width:55%;padding:0 5%;" *ngIf="movie" [@visibility]="visibility" [@expand]>
     <mat-list>
       <h3>Plot</h3>
       <p>{{movie.description}}</p><br>

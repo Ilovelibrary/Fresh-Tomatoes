@@ -35,6 +35,7 @@ import { RestangularConfigFactory } from './shared/restConfig';
 import { HighlightDirective } from './directives/highlight.directive';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import { TrailerComponent } from './moviedetail/moviedetail.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { TrailerComponent } from './moviedetail/moviedetail.component';
     LoginComponent,
     HighlightDirective,
     FavoritesComponent,
-    TrailerComponent
+    TrailerComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

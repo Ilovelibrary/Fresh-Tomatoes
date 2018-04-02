@@ -1,5 +1,5 @@
 <mat-toolbar mat-dialog-title class="toolbar text-floral-white">
-  Login
+  Signup
   <span class="flex-spacer"></span>
   <button mat-button mat-dialog-close>&times;</button>
 </mat-toolbar>
@@ -29,13 +29,11 @@
           </span>
         </mat-hint>
       </mat-form-field>
-      <mat-checkbox [(ngModel)]="user.remember" name="remember">Remember Me</mat-checkbox>
     </p>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <a mat-button (click)="goSignup()">Signup</a>
     <span class="flex-spacer"></span>
     <button mat-button mat-dialog-close>Cancel</button>
-    <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="loginForm.form.invalid" >Login</button>
+    <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="loginForm.form.invalid" >Signup</button>
   </mat-dialog-actions>
 </form>

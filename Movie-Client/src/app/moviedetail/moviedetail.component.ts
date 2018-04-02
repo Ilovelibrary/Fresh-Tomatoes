@@ -112,7 +112,6 @@ export class MoviedetailComponent implements OnInit {
       rating: 10,
       comment: ''
     });
-    this.commentFormDirective.resetForm();
   }
 
   onValueChanged(data?: any) {
@@ -136,8 +135,8 @@ export class MoviedetailComponent implements OnInit {
       this.favoriteService.postFavorite(this.movie._id)
         .subscribe(favorites => {
            console.log(favorites); this.favorite = true; 
-          }, errmess => 
-          this.dialog.open(LoginComponent, {width: '500px', height: '450px'})
+          }, errmess => { 
+          this.dialog.open(LoginComponent, {width: '500px', height: '450px'})}
         );
     }
     else {

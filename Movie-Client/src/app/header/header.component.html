@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar class="toolbar text-floral-white">
   <span><img src="/assets/images/tomota.png" height=40 width=40></span>
   <span class="flex-spacer"></span>
   <a mat-button routerLink="/home" routerLinkActive="active"><span class="fa fa-home fa-lg"></span> Home</a>
@@ -10,20 +10,12 @@
   <a *ngIf="username" mat-button (click)="logOut()"><span class="fa fa-sign-out fa-lg"></span> Logout</a>  
 </mat-toolbar>
 
-<div class="container jumbotron"
-    fxLayout="row"
-    fxLayout.sm="column" 
-    fxLayout.xs="column" 
-    fxLayoutAlign.xs="start center"
-    fxLayoutAlign.sm="start center" 
-    fxLayoutAlign.gt-sm="center center" 
-    fxLayoutGap="10px">
-
-  <div fxFlex fxFlex.gt-sm="80%">
+<div class="container jumbotron">
+  <div>
     <h1>Fresh Tomotas</h1>
   </div>
-  <div fxFlex fxFlex.gt-sm="20%">
+  <span class="flex-spacer"></span>
+  <div>
     <img src="/assets/images/tomota.png" height=100 width=100 alt="Logo">
   </div>
-  <div fxFlex></div>
 </div>

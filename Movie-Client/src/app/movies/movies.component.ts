@@ -29,5 +29,4 @@ export class MoviesComponent implements OnInit {
       .subscribe(movies => this.movies = movies,
         errmess => this.errMess = <any>errmess);
   }
-
 }

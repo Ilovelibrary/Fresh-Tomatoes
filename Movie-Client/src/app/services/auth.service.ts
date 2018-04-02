@@ -82,8 +82,10 @@ export class AuthService {
     localStorage.removeItem(this.tokenKey);
   }
 
-  signUp() {
-
+  signUp(user:any): Observable<any> {
+    return this.http.post<AuthResponse>(baseURL + 'users/signup', 
+      {"username": user.username, "password": user.password})
+      .catch(error => { return this.processHTTPMsgService.handleError(error); });
   }
 
   logIn(user: any): Observable<any> {
@@ -93,7 +95,7 @@ export class AuthService {
           this.storeUserCredentials({username: user.username, token: res.token});
           return {'success': true, 'username': user.username };
       })
-        .catch(error => { return this.processHTTPMsgService.handleError(error); });
+      .catch(error => { return this.processHTTPMsgService.handleError(error); });
   }
 
   logOut() {
