@@ -2,7 +2,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Movie } from '../shared/movie';
 import { MovieService } from '../services/movie.service';
-import { flyInOut, expand } from '../animations/app.animation';
+import { flyInOut} from '../animations/app.animation';
 
 @Component({
   selector: 'app-movies',
@@ -13,8 +13,7 @@ import { flyInOut, expand } from '../animations/app.animation';
     'style': 'display: block;'
   },
   animations: [
-    flyInOut(),
-    expand()
+    flyInOut()
   ]
 })
 export class MoviesComponent implements OnInit {

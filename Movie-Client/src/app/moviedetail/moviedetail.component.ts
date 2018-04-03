@@ -11,7 +11,7 @@ import { LoginComponent } from '../login/login.component';
 
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
-import { visibility, flyInOut, expand } from '../animations/app.animation';
+import { visibility, flyInOut } from '../animations/app.animation';
 
 @Component({
   selector: 'app-moviedetail',
@@ -23,8 +23,7 @@ import { visibility, flyInOut, expand } from '../animations/app.animation';
   },
   animations: [
     flyInOut(),
-    visibility(),
-    expand()
+    visibility()
   ]
 })
 export class MoviedetailComponent implements OnInit {
@@ -46,7 +45,7 @@ export class MoviedetailComponent implements OnInit {
 
   validationMessages = {
     'comment': {
-      'required':      'Comment is required.'
+      'required': 'Comment is required.'
     }
   };
 

@@ -9,7 +9,7 @@
     </div>
   </div>
 
-  <div fxFlex *ngIf="movies" [@expand]>
+  <div fxFlex *ngIf="movies">
     <mat-grid-list cols="5" rowHeight="3:5">
       <mat-grid-tile *ngFor="let movie of movies" [routerLink]="['/moviedetail', movie._id]" appHighlight>
         <img src="{{movie.urlPoster}}" alt={{movie.title}}>

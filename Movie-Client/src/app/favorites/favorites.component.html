@@ -15,8 +15,8 @@ fxLayoutGap="10px">
 </div>
 
 <div *ngIf="favorites || errMess; else loading">
-<div fxFlex *ngIf="favorites" [@expand]>
-<mat-grid-list cols="2" rowHeight="200px">
+<div fxFlex *ngIf="favorites">
+<mat-grid-list cols="4" rowHeight="200px">
  <mat-grid-tile *ngFor="let movie of favorites.movies">
    <div [routerLink]="['/moviedetail', movie._id]" appHighlight>
    <img height="200px" src="{{movie.urlPoster}}" alt={{movie.title}}>

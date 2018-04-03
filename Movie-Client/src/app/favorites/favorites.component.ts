@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Favorite } from '../shared/favorite';
 import { FavoriteService } from '../services/favorite.service';
-import { flyInOut, expand } from '../animations/app.animation';
+import { flyInOut } from '../animations/app.animation';
 
 @Component({
   selector: 'app-favorites',
@@ -12,8 +12,7 @@ import { flyInOut, expand } from '../animations/app.animation';
     'style': 'display: block;'
   },
   animations: [
-    flyInOut(),
-    expand()
+    flyInOut()
   ]
 })
 export class FavoritesComponent implements OnInit {
