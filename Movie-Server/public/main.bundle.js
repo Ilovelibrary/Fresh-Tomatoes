@@ -1458,7 +1458,7 @@ var ProcessHTTPMsgService = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return baseURL; });
-var baseURL = 'http://localhost:3000/';
+var baseURL = 'http://13.57.178.170:3000/';
 //# sourceMappingURL=baseurl.js.map
 
 /***/ }),

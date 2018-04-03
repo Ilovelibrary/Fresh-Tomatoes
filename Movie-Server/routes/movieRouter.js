@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const cors = require('./cors');
 var authenticate = require('../authenticate');
 
 const Movies = require('../models/movie');
@@ -12,8 +11,7 @@ const movieRouter = express.Router();
 movieRouter.use(bodyParser.json());
 
 movieRouter.route('/')
-.options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
-.get(cors.cors, (req,res,next) => {
+.get((req,res,next) => {
     Movies.find(req.query)
     .populate('comments.author')
     .then((movies) => {
@@ -23,7 +21,7 @@ movieRouter.route('/')
     }, (err) => next(err))
     .catch((err) => next(err));
 })
-.post(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
+.post(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
     Movies.create(req.body)
     .then((movie) => {
         console.log('Movie Created ', movie);
@@ -33,11 +31,11 @@ movieRouter.route('/')
     }, (err) => next(err))
     .catch((err) => next(err));
 })
-.put(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
+.put(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
     res.statusCode = 403;
     res.end('PUT operation not supported on /movies');
 })
-.delete(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
+.delete(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
     Movies.remove({})
     .then((resp) => {
         res.statusCode = 200;
@@ -49,8 +47,7 @@ movieRouter.route('/')
 
 
 movieRouter.route('/:movieId')
-.options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
-.get(cors.cors, (req,res,next) => {
+.get((req,res,next) => {
     Movies.findById(req.params.movieId)
     .populate('comments.author')
     .then((movie) => {
@@ -60,11 +57,11 @@ movieRouter.route('/:movieId')
     }, (err) => next(err))
     .catch((err) => next(err));
 })
-.post(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
+.post(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
     res.statusCode = 403;
     res.end('POST operation not supported on /movies/'+ req.params.movieId);
 })
-.put(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
+.put(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
     Movies.findByIdAndUpdate(req.params.movieId, {
         $set: req.body
     }, { new: true })
@@ -75,7 +72,7 @@ movieRouter.route('/:movieId')
     }, (err) => next(err))
     .catch((err) => next(err));
 })
-.delete(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
+.delete(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
     Movies.findByIdAndRemove(req.params.movieId)
     .then((resp) => {
         res.statusCode = 200;
@@ -87,8 +84,7 @@ movieRouter.route('/:movieId')
 
 
 movieRouter.route('/:movieId/comments')
-.options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
-.get(cors.cors, (req,res,next) => {
+.get((req,res,next) => {
     Movies.findById(req.params.movieId)
     .populate('comments.author')
     .then((movie) => {
@@ -105,7 +101,7 @@ movieRouter.route('/:movieId/comments')
     }, (err) => next(err))
     .catch((err) => next(err));
 })
-.post(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
+.post(authenticate.verifyUser, (req, res, next) => {
     Movies.findById(req.params.movieId)
     .then((movie) => {
         if (movie != null) {
@@ -130,12 +126,12 @@ movieRouter.route('/:movieId/comments')
     }, (err) => next(err))
     .catch((err) => next(err));
 })
-.put(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
+.put(authenticate.verifyUser, (req, res, next) => {
     res.statusCode = 403;
     res.end('PUT operation not supported on /movies/'
         + req.params.movieId + '/comments');
 })
-.delete(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
+.delete(authenticate.verifyUser, authenticate.verifyAdmin, (req, res, next) => {
     Movies.findById(req.params.movieId)
     .then((movie) => {
         if (movie != null) {
@@ -160,8 +156,7 @@ movieRouter.route('/:movieId/comments')
 
 
 movieRouter.route('/:movieId/comments/:commentId')
-.options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
-.get(cors.cors, (req,res,next) => {
+.get((req,res,next) => {
     Movies.findById(req.params.movieId)
     .populate('comments.author') 
     .then((movie) => {
@@ -183,12 +178,12 @@ movieRouter.route('/:movieId/comments/:commentId')
     }, (err) => next(err))
     .catch((err) => next(err));
 })
-.post(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
+.post(authenticate.verifyUser, (req, res, next) => {
     res.statusCode = 403;
     res.end('POST operation not supported on /movies/'+ req.params.movieId
         + '/comments/' + req.params.commentId);
 })
-.put(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
+.put(authenticate.verifyUser, (req, res, next) => {
     Movies.findById(req.params.movieId)
     .then((movie) => {
 
@@ -232,7 +227,7 @@ movieRouter.route('/:movieId/comments/:commentId')
     }, (err) => next(err))
     .catch((err) => next(err));
 })
-.delete(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
+.delete(authenticate.verifyUser, (req, res, next) => {
     Movies.findById(req.params.movieId)
     .then((movie) => {
         if (movie != null && movie.comments.id(req.params.commentId) != null) {
