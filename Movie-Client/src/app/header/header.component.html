@@ -3,7 +3,7 @@
   <span class="flex-spacer"></span>
   <a mat-button routerLink="/home" routerLinkActive="active"><span class="fa fa-home fa-lg"></span> Home</a>
   <a mat-button routerLink="/movies" routerLinkActive="active"><span class="fa fa-list fa-lg"></span> Movies</a>
-  <a mat-button routerLink="/favorites" routerLinkActive="active"><span class="fa fa-heart fa-lg"></span> My Favorites</a>
+  <a mat-button routerLink="/favorites" routerLinkActive="active"><span class="fa fa-heart fa-lg"></span> Favorites</a>
   <span class="flex-spacer"></span>
   <a *ngIf="!username" mat-button (click)="openLoginForm()"><span class="fa fa-sign-in fa-lg"></span> Login</a>
   <a *ngIf="username">{{username}}</a>
@@ -17,6 +17,6 @@
   </div>
   <span class="flex-spacer"></span>
   <div>
-    <img src="/assets/images/tomota.png" height=140 width=140 alt="Logo">
+    <img src="/assets/images/tomato.png" height=140 width=140 alt="Logo">
   </div>
 </div>
